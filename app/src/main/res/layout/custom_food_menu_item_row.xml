@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="1."
+        android:gravity="center_vertical"
+        android:textSize="12sp"
+        android:textStyle="bold"
+android:layout_weight="0.5"
+
+        android:id="@+id/foodserialNoTvId" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Food name"
+        android:layout_weight="2"
+        android:textSize="12sp"
+        android:textColor="#00C853"
+        android:gravity="center_vertical"
+        android:textStyle="bold"
+        android:id="@+id/foodNameTvId" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="30 RS"
+        android:textStyle="bold"
+        android:textSize="12sp"
+        android:gravity="center_vertical"
+        android:layout_weight="1"
+        android:id="@+id/foodPriceTvId" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+android:layout_weight="0.5"
+
+        android:src="@drawable/ic_delete"
+        android:id="@+id/foodDeleteId" />
+</LinearLayout>

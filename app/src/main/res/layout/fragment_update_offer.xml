@@ -1,0 +1,51 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    android:padding="@dimen/activity_horizontal_margin"
+    tools:context="com.atidvaya.admin.feelinghungrycms.UpdateOfferFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#FF5722"
+        android:text="Today's Offer" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:padding="5dp"
+        android:layout_marginTop="5dp"
+        android:textSize="14sp"
+        android:background="@drawable/edit_text_background"
+        android:gravity="left|top|start"
+        android:id="@+id/offerEtId" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update"
+        android:id="@+id/updateOffrBtnId"
+        android:paddingLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:paddingRight="30dp"
+        android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+    </ScrollView>
+</LinearLayout>
