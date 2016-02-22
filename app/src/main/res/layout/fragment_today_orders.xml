@@ -1,13 +1,29 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.atidvaya.admin.feelinghungrycms.TodayOrdersFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+
+
+
+    <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/todayOrdersListViewId"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1" />
 
-</FrameLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:inputType="textPersonName"
+
+        android:ems="10"
+        android:id="@+id/editText"
+        android:layout_gravity="bottom"
+        android:layout_weight="1" />
+</LinearLayout>

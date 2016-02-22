@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -23,6 +24,16 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -84,6 +95,8 @@ public class UpdateMenuFragment extends Fragment
          ma=new MyAdapter();
         foodMenuListView.setAdapter(ma);
 
+        new BackgroundTask().execute("");
+
 
     addFoodBtn.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -105,6 +118,9 @@ public class UpdateMenuFragment extends Fragment
                 foodObj.put("price", foodPrice);
 
                 foodList.add(foodObj);
+
+                OrderDataClass.foodList=foodList;
+
                 System.out.println(foodList);
                 ma.notifyDataSetChanged();
 
@@ -252,6 +268,9 @@ public class UpdateMenuFragment extends Fragment
 
                     System.out.println(foodList);
 
+                    OrderDataClass.foodList=foodList;
+
+
                     ma.notifyDataSetChanged();
                 }
             });
@@ -261,6 +280,121 @@ public class UpdateMenuFragment extends Fragment
             return view;
         }
     }
+
+
+
+
+
+
+
+    class BackgroundTask extends AsyncTask<String,Void,String>
+    {
+
+        ProgressDialog progressDialog;
+        HttpURLConnection urlConnection;
+        @Override
+        protected void onPreExecute() {
+
+            progressDialog=new ProgressDialog(context);
+            progressDialog.setMessage("Please wait");
+            progressDialog.setIndeterminate(true);
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+
+
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            StringBuffer result = new StringBuffer();
+
+            try {
+                URL url = new URL("https://feelinghungry.firebaseio.com/food_menu.json");
+                urlConnection = (HttpURLConnection) url.openConnection();
+                InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+
+                BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    result.append(line);
+                }
+
+            }catch( Exception e) {
+                e.printStackTrace();
+                result.append("error");
+            }
+            finally {
+                urlConnection.disconnect();
+            }
+
+
+            return result.toString();
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            progressDialog.dismiss();
+            if(result.equals("null"))
+            {
+
+            }else if(result.equals("error"))
+            {
+
+
+            }else
+            {
+
+                try {
+
+
+
+                    JSONObject jsonObject=new JSONObject(result);
+
+                    JSONArray jsonArray=jsonObject.getJSONArray("food_menu");
+
+                    for(int i=0;i<jsonArray.length();i++)
+                    {
+
+                        JSONObject locJsonObj=jsonArray.getJSONObject(i);
+
+                        String name= locJsonObj.getString("name").trim();
+                        String price= locJsonObj.getString("price").trim();
+
+                        Map<String,String> mapObj=new HashMap<String,String>();
+                        mapObj.put("name",name);
+                        mapObj.put("price",price);
+
+                        foodList.add(mapObj);
+                        ma.notifyDataSetChanged();
+
+
+
+                    }
+
+                    OrderDataClass.foodList=foodList;
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+
+
+                }
+
+
+            }
+
+
+
+
+
+            super.onPostExecute(result);
+        }
+    }
+
+
 
 
 
