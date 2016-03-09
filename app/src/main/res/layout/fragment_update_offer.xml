@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-
+android:background="@drawable/app_background"
     android:padding="@dimen/activity_horizontal_margin"
     tools:context="com.atidvaya.admin.feelinghungrycms.UpdateOfferFragment">
 
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:textColor="#FF5722"
+        android:textColor="#FFEA00"
         android:text="Today's Offer" />
     <EditText
         android:layout_width="match_parent"

@@ -3,6 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="15dp"
+    android:background="@drawable/app_background"
     tools:context="com.atidvaya.admin.feelinghungrycms.TodayOrdersFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -13,6 +18,9 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:divider="#00FFFFFF"
+        android:dividerHeight="3dp"
+
         android:id="@+id/todayOrdersListViewId"
         android:layout_gravity="center_vertical"
         android:layout_weight="1" />
